@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Setup Instructions</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+        background-color: #0f0f10;
+        color: #e5e5e5;
+        line-height: 1.6;
+        padding: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      h1 {
+        color: #c6ff00;
+        border-bottom: 2px solid #c6ff00;
+        padding-bottom: 1rem;
+      }
+      h2 {
+        color: #c6ff00;
+        margin-top: 2rem;
+      }
+      .warning {
+        background-color: rgba(255, 200, 100, 0.1);
+        border-left: 4px solid #ffc864;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+      .success {
+        background-color: rgba(198, 255, 0, 0.1);
+        border-left: 4px solid #c6ff00;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+      .code {
+        background-color: #1a1a1b;
+        border: 1px solid #2a2a2b;
+        border-radius: 8px;
+        padding: 1rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+      }
+      .links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+      .link-card {
+        background-color: #1a1a1b;
+        border: 1px solid #2a2a2b;
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-decoration: none;
+        transition: border-color 0.3s ease, transform 0.2s ease;
+      }
+      .link-card:hover {
+        border-color: #c6ff00;
+        transform: translateY(-4px);
+      }
+      .link-card h3 {
+        color: #ffffff;
+        margin: 0 0 0.5rem 0;
+      }
+      .link-card p {
+        color: #888;
+        margin: 0;
+        font-size: 0.9rem;
+      }
+      ol,
+      ul {
+        margin-left: 1.5rem;
+      }
+      li {
+        margin: 0.5rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🚀 Portfolio Website Setup</h1>
+
+    <div class="warning">
+      <strong>⚠️ Important:</strong> Before using this portfolio, you need to
+      update the Firebase configuration with your own credentials.
+    </div>
+
+    <h2>Quick Links</h2>
+    <div class="links">
+      <a href="/index.html" class="link-card">
+        <h3>📱 Portfolio Site</h3>
+        <p>View your main portfolio</p>
+      </a>
+      <a href="/login.html" class="link-card">
+        <h3>🔐 Admin Login</h3>
+        <p>Sign in to manage content</p>
+      </a>
+      <a href="/dashboard.html" class="link-card">
+        <h3>📊 Dashboard</h3>
+        <p>Manage your portfolio</p>
+      </a>
+    </div>
+
+    <h2>Setup Steps</h2>
+
+    <ol>
+      <li>
+        <strong>Create Firebase Project</strong>
+        <ul>
+          <li>
+            Go to
+            <a
+              href="https://console.firebase.google.com/"
+              target="_blank"
+              style="color: #c6ff00"
+              >Firebase Console</a
+            >
+          </li>
+          <li>Create a new project</li>
+          <li>Enable Firestore Database</li>
+          <li>Enable Email/Password Authentication</li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Get Firebase Config</strong>
+        <ul>
+          <li>In Firebase Console, go to Project Settings</li>
+          <li>Scroll down to "Your apps"</li>
+          <li>Click on Web app icon (&lt;/&gt;)</li>
+          <li>Copy the firebaseConfig object</li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Update Configuration</strong>
+        <ul>
+          <li>Replace the Firebase config in <code>index.html</code></li>
+          <li>Replace the Firebase config in <code>login.html</code></li>
+          <li>Replace the Firebase config in <code>dashboard.html</code></li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Set Firestore Rules</strong>
+        <div class="code">
+          rules_version = '2';<br />
+          service cloud.firestore {<br />
+          &nbsp;&nbsp;match /databases/{database}/documents {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;match /{document=**} {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allow read: true;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;match /{document=**} {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allow write: if request.auth !=
+          null;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+          &nbsp;&nbsp;}<br />
+          }
+        </div>
+      </li>
+
+      <li>
+        <strong>Create Admin User</strong>
+        <ul>
+          <li>Go to Firebase Console > Authentication</li>
+          <li>Click "Add user"</li>
+          <li>Enter your email and password</li>
+        </ul>
+      </li>
+    </ol>
+
+    <div class="success">
+      <strong>✅ Ready to Use!</strong><br />
+      Once you've completed the setup, you can:
+      <ul>
+        <li>
+          Login at <a href="/login.html" style="color: #c6ff00">/login.html</a>
+        </li>
+        <li>Manage content in the dashboard</li>
+        <li>
+          View your portfolio at
+          <a href="/index.html" style="color: #c6ff00">/index.html</a>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Collections Structure</h2>
+
+    <p>
+      Firebase will automatically create these collections when you add data:
+    </p>
+
+    <ul>
+      <li><code>about</code> - Your about information</li>
+      <li><code>skills</code> - Your skills and technologies</li>
+      <li><code>experience</code> - Work experience</li>
+      <li><code>projects</code> - Your projects</li>
+      <li><code>blogs</code> - Blog posts</li>
+    </ul>
+
+    <h2>Need Help?</h2>
+
+    <p>
+      Check the <code>README.md</code> file for detailed instructions and
+      troubleshooting.
+    </p>
+  </body>
+</html>
