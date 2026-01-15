@@ -2,3 +2,5 @@
 /login.html    /login.html    200
 /dashboard.html /dashboard.html 200
 /setup.html    /setup.html    200
+
+http://admin.omarfaruqeanik.com/*  /login.html  200!
