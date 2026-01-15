@@ -1,11 +1,19 @@
 [build]
   publish = "."
 
+# 🔐 ADMIN SUBDOMAIN: admin.omarfaruqeanik.com → Shows login page
+[[redirects]]
+  from = "https://admin.omarfaruqeanik.com/*"
+  to = "https://omarfaruqeanik.com/login.html"
+  status = 302
+
+# 🌐 MAIN WEBSITE: Single Page App routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# 📄 KEEP THESE PAGES ACCESSIBLE
 [[redirects]]
   from = "/login.html"
   to = "/login.html"
