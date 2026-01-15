@@ -17,11 +17,11 @@
   to = "/setup.html"
   status = 200
 
-# 🔐 ADMIN SUBDOMAIN REDIRECT
-[[redirects]]
-  from = "https://admin.omarfaruqeanik.com/*"
-  to = "/login.html"
-  status = 200  # Change from 302 to 200
+  [[redirects]]
+    from = "https://admin.omarfaruqeanik.com/*"
+    to = "/admin.html"
+    status = 200
+    force = true
 
 # 🌐 MAIN SPA ROUTING (CATCH-ALL, COMES LAST!)
 [[redirects]]
