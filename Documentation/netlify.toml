@@ -1,19 +1,7 @@
 [build]
   publish = "."
 
-# 🔐 ADMIN SUBDOMAIN REDIRECT
-[[redirects]]
-  from = "https://admin.omarfaruqeanik.com/*"
-  to = "/login.html"
-  status = 302
-
-# 🌐 MAIN SPA ROUTING
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# 📄 KEEP PAGES ACCESSIBLE
+# 📄 KEEP PAGES ACCESSIBLE - MUST COME FIRST!
 [[redirects]]
   from = "/login.html"
   to = "/login.html"
@@ -27,4 +15,16 @@
 [[redirects]]
   from = "/setup.html"
   to = "/setup.html"
+  status = 200
+
+# 🔐 ADMIN SUBDOMAIN REDIRECT
+[[redirects]]
+  from = "https://admin.omarfaruqeanik.com/*"
+  to = "/login.html"
+  status = 200  # Change from 302 to 200
+
+# 🌐 MAIN SPA ROUTING (CATCH-ALL, COMES LAST!)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200
