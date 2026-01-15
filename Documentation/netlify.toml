@@ -1,7 +1,21 @@
 [build]
   publish = "."
 
-# 🔐 ADMIN SUBDOMAIN ROUTES
+# 🔐 ADMIN SUBDOMAIN - HTTP (TEMPORARY - until SSL works)
+[[redirects]]
+  from = "http://admin.omarfaruqeanik.com/*"
+  to = "/login.html"
+  status = 200
+  force = true
+
+# 🔐 ADMIN HTTPS REDIRECT TO HTTP (TEMPORARY)
+[[redirects]]
+  from = "https://admin.omarfaruqeanik.com/*"
+  to = "http://admin.omarfaruqeanik.com/:splat"
+  status = 301
+  force = true
+
+# 🔐 ADMIN SPECIFIC ROUTES (for when SSL works)
 [[redirects]]
   from = "https://admin.omarfaruqeanik.com/"
   to = "/login.html"
@@ -17,7 +31,7 @@
   to = "/dashboard.html"
   status = 200
 
-# 🔒 PROTECT ADMIN ROUTES (Optional - redirect main site users)
+# 🔒 PROTECT ADMIN ROUTES ON MAIN SITE
 [[redirects]]
   from = "https://omarfaruqeanik.com/login.html"
   to = "/"
@@ -28,8 +42,9 @@
   to = "/"
   status = 301
 
-# 🌐 MAIN SITE ROUTING (comes last!)
+# 🌐 MAIN SITE ROUTING (SPA - COMES LAST!)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
