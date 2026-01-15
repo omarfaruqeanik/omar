@@ -1,29 +1,34 @@
 [build]
   publish = "."
 
-# 📄 KEEP PAGES ACCESSIBLE - MUST COME FIRST!
+# 🔐 ADMIN SUBDOMAIN ROUTES
 [[redirects]]
-  from = "/login.html"
+  from = "https://admin.omarfaruqeanik.com/"
   to = "/login.html"
   status = 200
 
 [[redirects]]
-  from = "/dashboard.html"
-  to = "/dashboard.html"
+  from = "https://admin.omarfaruqeanik.com/login"
+  to = "/login.html"
   status = 200
 
 [[redirects]]
-  from = "/setup.html"
-  to = "/setup.html"
+  from = "https://admin.omarfaruqeanik.com/dashboard"
+  to = "/dashboard.html"
   status = 200
 
-  [[redirects]]
-    from = "https://admin.omarfaruqeanik.com/*"
-    to = "/admin.html"
-    status = 200
-    force = true
+# 🔒 PROTECT ADMIN ROUTES (Optional - redirect main site users)
+[[redirects]]
+  from = "https://omarfaruqeanik.com/login.html"
+  to = "/"
+  status = 301
 
-# 🌐 MAIN SPA ROUTING (CATCH-ALL, COMES LAST!)
+[[redirects]]
+  from = "https://omarfaruqeanik.com/dashboard.html"
+  to = "/"
+  status = 301
+
+# 🌐 MAIN SITE ROUTING (comes last!)
 [[redirects]]
   from = "/*"
   to = "/index.html"
