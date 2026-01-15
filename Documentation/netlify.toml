@@ -48,3 +48,15 @@
   to = "/index.html"
   status = 200
 
+# 🔥 FORCE ADMIN TO SPECIFIC FILE
+[[redirects]]
+  from = "http://admin.omarfaruqeanik.com/*"
+  to = "/admin-index.html"
+  status = 200
+  force = true
+
+# MAIN SITE ROUTING
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
