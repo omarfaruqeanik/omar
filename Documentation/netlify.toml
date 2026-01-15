@@ -4,16 +4,16 @@
 # 🔐 ADMIN SUBDOMAIN REDIRECT
 [[redirects]]
   from = "https://admin.omarfaruqeanik.com/*"
-  to = "https://omarfaruqeanik.com/login.html"
+  to = "/login.html"
   status = 302
 
-# 🌐 MAIN SITE
+# 🌐 MAIN SPA ROUTING
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# 📄 KEEP PAGES
+# 📄 KEEP PAGES ACCESSIBLE
 [[redirects]]
   from = "/login.html"
   to = "/login.html"
@@ -22,4 +22,9 @@
 [[redirects]]
   from = "/dashboard.html"
   to = "/dashboard.html"
+  status = 200
+
+[[redirects]]
+  from = "/setup.html"
+  to = "/setup.html"
   status = 200
